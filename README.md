@@ -95,63 +95,63 @@ DATASET=DeepSTABp ./test.sh deepstabp_test.csv  # DeepSTABp dataset with OGT
 
 
 
-1. ### 3. Prediction
+### 3. Prediction
 
-   Use the `predict.sh` script to apply a trained model to new sequences and generate predictions.
+Use the `predict.sh` script to apply a trained model to new sequences and generate predictions.
 
-   ```bash
-   ./predict.sh --input <test.csv> --model <model.pkl> --output <results.csv> (--ogt|--no-ogt) [--mode <1|2|3>]
-   ```
+```bash
+./predict.sh --input <test.csv> --model <model.pkl> --output <results.csv> (--ogt|--no-ogt) [--mode <1|2|3>]
+```
 
-   **Required arguments:**
-   - `--input PATH`      : Path to input CSV file.
-   - `--model PATH`      : Path to trained model file (`.pkl` format).
-   - `--output PATH`     : Path to output CSV file where predictions will be saved.
-   - `--ogt` / `--no-ogt`: Specify whether the model was trained **with OGT** (`--ogt`) or **without OGT** (`--no-ogt`). This determines which prediction backend is used.
+**Required arguments:**
+- `--input PATH`      : Path to input CSV file.
+- `--model PATH`      : Path to trained model file (`.pkl` format).
+- `--output PATH`     : Path to output CSV file where predictions will be saved.
+- `--ogt` / `--no-ogt`: Specify whether the model was trained **with OGT** (`--ogt`) or **without OGT** (`--no-ogt`). This determines which prediction backend is used.
 
-   **Input file format:**
-   The input CSV must contain the following columns:
-   - `uniprot_id` : Unique identifier for each sequence.
-   - `sequence`   : The amino acid sequence.
+**Input file format:**
+The input CSV must contain the following columns:
+- `uniprot_id` : Unique identifier for each sequence.
+- `sequence`   : The amino acid sequence.
 
-   If you use the `--ogt` option (model trained with OGT), the CSV must **also** contain a column named `ogt` with the optimal growth temperature values for each sequence.
+If you use the `--ogt` option (model trained with OGT), the CSV must **also** contain a column named `ogt` with the optimal growth temperature values for each sequence.
 
-   For reference, see the example file `samples.csv` in the project root.
+For reference, see the example file `samples.csv` in the project root.
 
-   **Optional arguments:**
-   - `--mode NUM`        : Execution mode (default = `3`).
-     - `1` : Run steps 2–4 (skip ESM‑2 embedding extraction).
-     - `2` : Run step 4 only (prediction).
-     - `3` : Run all steps (1–4).
-   - `-h, --help`        : Show help message.
+**Optional arguments:**
+- `--mode NUM`        : Execution mode (default = `3`).
+  - `1` : Run steps 2–4 (skip ESM‑2 embedding extraction).
+  - `2` : Run step 4 only (prediction).
+  - `3` : Run all steps (1–4).
+- `-h, --help`        : Show help message.
 
-   **Step details:**
-   - Step 1: ESM‑2 embedding extraction (`gen_pt.py`)
-   - Step 2: Node feature creation (`get_features_test.py`)
-   - Step 3: Edge feature creation (`gcm.py`)
-   - Step 4: Prediction (`predict.py`)
+**Step details:**
+- Step 1: ESM‑2 embedding extraction (`gen_pt.py`)
+- Step 2: Node feature creation (`get_features_test.py`)
+- Step 3: Edge feature creation (`gcm.py`)
+- Step 4: Prediction (`predict.py`)
 
-   **Dataset auto‑detection:**
-   If the model filename contains `DeepSTABp` (case‑insensitive), the script automatically applies special preprocessing required for the DeepSTABp dataset (sequences with special characters and max length 1750).
+**Dataset auto‑detection:**
+If the model filename contains `DeepSTABp` (case‑insensitive), the script automatically applies special preprocessing required for the DeepSTABp dataset (sequences with special characters and max length 1750).
 
-   **Required parameter files:**
-   The following `.npy` files must exist **in the same directory as the model file**. They will be copied to `DeepTM-ESM/Data/` automatically.
-   - `mean_noblhhm.npy`
-   - `mean_ogt.npy`
-   - `std_noblhhm.npy`
-   - `std_ogt.npy`
+**Required parameter files:**
+The following `.npy` files must exist **in the same directory as the model file**. They will be copied to `DeepTM-ESM/Data/` automatically.
+- `mean_noblhhm.npy`
+- `mean_ogt.npy`
+- `std_noblhhm.npy`
+- `std_ogt.npy`
 
-   **Examples:**
-   ```bash
-   # Predict using an OGT model, all steps (mode 3)
-   ./predict.sh --input new_seqs.csv --model Pre-trained/TmPred/TmPred_ogt.pkl --output predictions.csv --ogt
-   
-   # Predict using a non‑OGT model, skip ESM‑2 embedding (mode 1)
-   ./predict.sh --input new_seqs.csv --model Pre-trained/TmPred/TmPred_noogt.pkl --output preds.csv --no-ogt --mode 1
-   
-   # DeepSTABp model (filename contains "DeepSTABp") triggers special preprocessing automatically
-   ./predict.sh --input deep_data.csv --model Pre-trained/DeepSTABp/DeepSTABp_ogt.pkl --output deep_preds.csv --ogt
-   ```
+**Examples:**
+```bash
+# Predict using an OGT model, all steps (mode 3)
+./predict.sh --input new_seqs.csv --model Pre-trained/TmPred/TmPred_ogt.pkl --output predictions.csv --ogt
+
+# Predict using a non‑OGT model, skip ESM‑2 embedding (mode 1)
+./predict.sh --input new_seqs.csv --model Pre-trained/TmPred/TmPred_noogt.pkl --output preds.csv --no-ogt --mode 1
+
+# DeepSTABp model (filename contains "DeepSTABp") triggers special preprocessing automatically
+./predict.sh --input deep_data.csv --model Pre-trained/DeepSTABp/DeepSTABp_ogt.pkl --output deep_preds.csv --ogt
+```
 
 
 

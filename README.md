@@ -133,7 +133,7 @@ For reference, see the example file `samples.csv` in the project root.
 **Dataset auto‑detection:**
 If the model filename contains `DeepSTABp` (case‑insensitive), the script automatically applies special preprocessing required for the DeepSTABp dataset (sequences with special characters and max length 1750).
 
-**Required parameter files:**
+**Required normalization statistics files:**
 The following `.npy` files must exist **in the same directory as the model file**. They will be copied to `DeepTM-ESM/Data/` automatically.
 - `mean_noblhhm.npy`
 - `mean_ogt.npy`

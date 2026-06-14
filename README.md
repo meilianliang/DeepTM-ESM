@@ -1,4 +1,4 @@
-# High-Throughput Prediction of Protein Thermostability Using ESM-2, Hand-crafted Features, and Self-Attentive GCN
+# High-Throughput Prediction of Protein Thermostability Using ESM-2, Hand-crafted Features, and a GCN with Self-Attention
 ## Abstract:
 
 Predicting protein thermal stability is critical for enzyme engineering, yet existing models often involve complex, multi-step pipelines that depend on costly alignments or predicted structures, severely limiting their applicability for high-throughput screening. We present DeepTM-ESM, a lightweight framework combining ESM-2 protein language model embeddings with hand-crafted biophysical features. These features are processed by a graph convolutional network augmented with a self-attention mechanism to capture both local residue interactions and global sequence context. Two variants (with/without optimal growth temperature, OGT) are introduced.

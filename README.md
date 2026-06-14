@@ -91,8 +91,7 @@ DATASET=DeepSTABp ./test_noogt.sh <test_data.csv> [mode]
 DATASET=DeepSTABp ./test.sh deepstabp_test.csv  # DeepSTABp dataset with OGT
 ```
 
-**Note:** Place your trained model files in `DeepTM-ESM/Model/`. The test script will automatically use all models in this directory for evaluation.
-
+**Note:** Put your trained models under DeepTM-ESM/Model/ and the mean/std normalization files under DeepTM-ESM/Data/. The test script will use all models in Model/ and expects the corresponding statistics (e.g., *_noblhhm.npy, *_ogt.npy) to already exist in Data/.
 
 
 ### 3. Prediction

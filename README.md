@@ -206,7 +206,7 @@ Pre-trained/
 
 **Important notes:**
 - **Directory naming**: The subdirectory name under `Pre-trained/`  exactly match the dataset name (case-sensitive) for automatic dataset detection.
-- **Model files**: Each model file (`.pkl`) is accompanied by the four parameter files (`mean_noblhhm.npy`, `mean_ogt.npy`, `std_noblhhm.npy`, `std_ogt.npy`) in the same directory.
+- **Model files**: Each model file (`.pkl`) is accompanied by the four normalization statistics files (`mean_noblhhm.npy`, `mean_ogt.npy`, `std_noblhhm.npy`, `std_ogt.npy`) in the same directory.
 - **Dataset detection**: When using a model from a dataset-specific directory (e.g., `Pre-trained/DeepSTABp/`), the corresponding preprocessing will be automatically applied (e.g., DeepSTABp-specific handling for special characters and max length 1750).
 
 **Usage example:**
